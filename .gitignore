@@ -1,0 +1,8 @@
+config.yaml
+tmp
+unused
+*.swp
+*.swo
+*-console.rb
+.htaccess
+organization.rb

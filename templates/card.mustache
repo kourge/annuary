@@ -1,0 +1,81 @@
+<div class="vcard" data-dn="{{ dn }}">
+  <div class="header">
+    <h2 class="fn">{{ cn }}</h2>
+    {{# admin? }}
+      <a href="{{ edit_url }}">(edit)</a>
+    {{/ admin? }}
+  </div>
+
+  <div class="body">
+    <div class="side">
+      <a class="photo" href="{{ photo_url }}" target="_blank">
+        <img class="photo" src="{{ thumb_url }}" alt="Photo of {{ cn }}" />
+      </a>
+      <a class="vcard-export" href="{{ vcard_url }}">
+        vCard
+      </a>
+      {{# bugmail }}
+        <a class="bugmail" title="Bugmail" href="mailto:{{ bugmail }}">Bugmail</a>
+      {{/ bugmail }}
+    </div>
+
+    <div class="employee">
+      <p class="title">{{ title }}</p>
+      <p class="employee-type">{{ employee_type }}</p>
+      <a class="org-chart" href="{{ org_chart_url }}">(Org)</a>
+      {{# manager }}
+        <p class="manager">
+          Manager: <a href="{{ manager_search_url }}">{{ cn }}</a>
+        </p>
+      {{/ manager }}
+    </div>
+
+    {{# locality? }}
+      <ul class="adr">
+      <li>
+      <a href="https://intranet.mozilla.org/OfficeLocations">{{ location }}</a>
+      {{# extension? }}
+        , x{{ extension }}
+      {{/ extension? }}
+      </li>
+      </ul>
+    {{/ locality? }}
+
+    {{# mobile? }}
+      <ul class="telecommunications">
+        {{# mobile }}
+          <li>{{#tel}}{{ to_s }}{{/tel}}</li>
+        {{/ mobile }}
+      </ul>
+    {{/ mobile? }}
+
+    <ul class="email">
+      <li><a class="value" href="mailto:{{ mail }}">{{ mail }}</a></li>
+      {{# email_aliases }}
+        <li><a class="value" href="mailto:{{ to_s }}">{{ to_s }}</a></li>
+      {{/ email_aliases }}
+    </ul>
+
+    {{# im? }}
+      <ul class="im">
+        {{# im }}
+          <li>{{ to_s }}</li>
+        {{/ im }}
+      </ul>
+    {{/ im? }}
+
+    {{# i_work_on }}
+      <div class="note">I work on: 
+      {{#wiki_format}}{{ i_work_on }}{{/wiki_format}}
+      </div>
+    {{/ i_work_on }}
+
+    {{# other }}
+      <div class="other">{{#wiki_format}}{{ other }}{{/wiki_format}}</div>
+    {{/ other }}
+  </div>
+
+  <div class="footer">
+    <span class="l"></span><span class="m"></span><span class="r"></span>
+  </div>
+</div>
