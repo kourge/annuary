@@ -1,4 +1,4 @@
-load 'compatibility.rb' if RUBY_VERSION < '1.8.7'
+load 'compatibility.rb' if RUBY_VERSION < '1.9'
 
 require 'sinatra/base'
 require 'mustache/sinatra'
@@ -17,8 +17,13 @@ class PhonebookApp < Sinatra::Base
   register Mustache::Sinatra
   require 'views/layout'
 
-  get '/' do mustache :cards end
-  get '/faces' do mustache :faces end
+  get '/' do
+    mustache :cards
+  end
+
+  get '/faces' do
+    mustache :faces
+  end
 end
 
 
@@ -27,6 +32,7 @@ load 'flash.rb'
 load 'auth.rb'
 load 'search.rb'
 load 'photo.rb'
+load 'edit.rb'
 load 'organization.rb'
 
 

@@ -4,7 +4,7 @@ class NilClass
 end
 
 module Boolean
-  def checked; self ? 'checked="checked"' : '' end
+  def checked() self ? 'checked="checked"' : '' end
 end
 
 class TrueClass
@@ -49,10 +49,8 @@ end
 
 
 require 'digest'
-
-
 class String
-  def md5; Digest::MD5.hexdigest(self) end
+  def md5() Digest::MD5.hexdigest(self) end
 end
 
 

@@ -16,12 +16,16 @@ class PhonebookApp < Sinatra::Base
       if referer =~ /login|logout/ then redirect '/' else redirect referer end
     end
 
-    def error(status_code, string)
+    def error(status_code, object)
       if accept_json?
         content_type :json
-        halt status_code, {:error => string}.to_json
+        halt status_code, {:error => object}.to_json
       else
-        halt status_code, erb(:error, :locals => {:message => string})
+        locals = {
+          :exception? => object.kind_of?(Exception),
+          :object => object, :status_code => status_code
+        }
+        halt status_code, mustache(:error, :locals => locals)
       end
     end
 

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Mozilla Phonebook</title>
+    <title>{{ title }}</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
     <script src="js/prototype.js"></script>
@@ -26,6 +26,10 @@
     </ul>
   </form>
 </div>
+
+{{# flash }}
+  <div class="flash {{ type }}">{{{ message }}}</div>
+{{/ flash }}
 
 {{{ yield }}}
 </body>

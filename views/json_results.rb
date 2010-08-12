@@ -14,7 +14,7 @@ module PhonebookApp::Views
           :location => e.entry[:physicaldeliveryofficename].first,
           :employeeType => e.employee_type.split(', '),
           :manager => e.manager ? {
-            :dn => e.manager.dn, :cn => e.manager.cn.first
+            :dn => e.manager[:dn].first, :cn => e.manager[:cn].first
           } : nil,
           :photoURL => e.photo_url, :thumbURL => e.thumb_url
         }

@@ -1,0 +1,18 @@
+<p class="error">
+  <span class="prefix" title="Error">Error:</span>
+  <span class="status-code">{{ status_code }}</span>
+  {{# exception? }}
+    {{# object }}
+      <span class="exception-class">{{ class }}</span>: 
+      <span class="exception-message">{{ message}}</span> 
+      <span class="exception-backtrace">
+      {{# backtrace }}
+        <code class="exception-frame">{{ to_s }}</code>
+      {{/ backtrace }}
+      </span>
+    {{/ object }}
+  {{/ exception? }}
+  {{^ exception? }}
+    <span class="message">{{ object }}</span>
+  {{/ exception? }}
+</p>

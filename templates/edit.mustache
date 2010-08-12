@@ -1,0 +1,82 @@
+
+<form id="edit" method="post" action="edit" enctype="multipart/form-data">
+<div class="vcard">
+
+<div class="header"><h2>Edit Phonebook Entry</h2></div>
+
+<div class="body">
+<table class="edit-table">
+
+{{{ cn }}}
+{{{ email_alias }}}
+{{{ manager }}}
+{{{ office_city }}}
+{{{ office_country }}}
+{{{ job_title }}}
+
+<tr>
+  <td><label>Employee Status</label></td>
+  <td class="container">
+    {{# admin? }}
+      {{# community? }}
+        {{ community }}
+      {{/ community? }}
+      {{^ community? }}
+        {{{ organization_types }}}
+        {{{ hire_types }}}
+      {{/ community? }}
+      <input type="checkbox" name="is_manager" id="is_manager" />
+      <label for="is_manager">User is a manager</label>
+    {{/ admin? }}
+
+    {{^ admin? }}
+      {{# community? }}
+        {{ community }}
+      {{/ community? }}
+      {{^ community? }}
+        {{{ employee_type }}}
+      {{/ community? }}
+    {{/ admin? }}
+  </td>
+</tr>
+
+{{{ extension }}}
+{{{ mobile }}}
+{{{ im }}}
+{{{ bugmail }}}
+{{{ i_work_on }}}
+{{{ other }}}
+
+<tr>
+  <td><label>Photo</label></td>
+  <td>
+    <img class="photo" src="{{ thumb_url }}" />
+    <label for="photo-upload">Upload new photo</label>
+    <input id="photo-upload" type="file" name="photo" accept="{{ accept }}" />
+    {{# photo_description }}
+      <br /><em class="description">{{ photo_description }}</em>
+    {{/ photo_description }}
+  </td>
+</tr>
+
+<tr>
+  <td></td>
+  <td>
+    <input type="hidden" name="mail" value="{{ mail }}" />
+    <button type="submit">Save Changes</button>
+  </td>
+</tr>
+
+</table>
+</div>
+
+<div class="footer">
+  <span class="l"></span><span class="m"></span><span class="r"></span>
+</div>
+
+</div>
+</form>
+
+<script type="text/javascript" src="js/autocomplete.js"></script>
+<script type="text/javascript" src="js/edit.js"></script>
+

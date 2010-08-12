@@ -207,6 +207,49 @@ a:hover {
   text-align: center;
   }
 
+div.flash {
+  margin: 0.5em auto;
+  padding: 0.75em;
+  width: 40%;
+  color: white;
+  -moz-border-radius: 0.4em;
+  }
+  div.flash.notice {
+    background-color: rgba(172, 209, 227, 0.5);
+    }
+  div.flash.error {
+    background-color: #ED9F9C;
+    }
+
+p.error {
+  margin: 5em auto 0 auto;
+  text-align: center;
+  display: block;
+  }
+
+  p.error span.prefix {
+    display: block;
+    height: 0;
+    padding-top: 106px;
+    width: 123px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-image: url(../img/ohnoes.jpg);
+    }
+
+  p.error span.exception-backtrace {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    font-family: Monaco, Consolas, monospace;
+    font-size: 0.75em;
+    text-align: left;
+    }
+
+  p.error span.exception-backtrace code.exception-frame {
+    display: block;
+    }
+
 /* Card view */
 
 #results {
@@ -391,14 +434,12 @@ form#edit {
     padding: 0;
     }
 
-#email-alias-add,
-#phone-number-add,
-#im-add {
+tr.multiple a.add-link {
   padding-left: 18px;
   background: url(../img/add.png) no-repeat;
   }
 
-a.remove-link {
+tr.multiple a.remove-link {
   padding-left: 16px;
   background: url(../img/remove.png) no-repeat;
   }
@@ -430,6 +471,10 @@ table.edit-table {
     font-weight: bold;
     }
 
+  table.edit-table td.container label {
+    font-weight: normal;
+    }
+
   table.edit-table td input + a {
     margin-left: 0.5em;
   }
@@ -437,6 +482,10 @@ table.edit-table {
   table.edit-table img.photo {
     float: left;
     margin-right: 1.5em;
+    }
+
+  table.edit-table tr.textarea textarea {
+    font-family: Monaco, Consolas, monospace;
     }
 
   table.edit-table em.description {

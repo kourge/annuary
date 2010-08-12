@@ -6,15 +6,32 @@ class PhonebookApp
       def get(key) raise NotImplementedError end
       def set(key, value) raise NotImplementedError end
 
-      include PhonebookApp::MemcachableReadWrite
+      def [](key) self.get(key) end
+      def []=(key, value)
+        self.set(key, value)
+        Thumb[key] = nil
+      end
     end
   end
 
+  # You should generally use [] and []= to read / write, since they are
+  # memoized through memcache if possible. get and set are responsible for the
+  # raw operations of fetching / writing data from / to LDAP, so override these
+  # to implement the actual code to do so.
   class Thumb
     class << self
       def get(key) raise NotImplementedError end
+      def set(key) nil end
 
-      include PhonebookApp::MemcachableRead
+      def [](key) self.get(key) end
+      def []=(key, value) self.set(key) end
+      def invalidate(key) self[key] = nil end
+
+      if SETTINGS['memcache']['enabled'] and PhonebookApp.memcache
+        extend PhonebookApp::Memcachable
+        memcachify :[], 'phonebook:thumb'
+        memcachify :[]=, 'phonebook:thumb'
+      end
     end
   end
 

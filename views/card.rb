@@ -9,14 +9,7 @@ module PhonebookApp::Views
     end
 
     def admin?
-      if @admin.nil?
-        @admin = Auth.ldap_connection_as_user.search(
-          :base => 'ou=groups,dc=mozilla',
-          :filter => "(&(member=#{@entry.dn})(cn=phonebook_admin))",
-          :attributes => ['cn'], :attributes_only => true
-        ).length > 0
-      end
-      @admin
+      @admin.nil? ? @admin = Auth::DN.new(@entry.dn).phonebook_admin? : @admin
     end
 
     def dn() @entry.dn end
@@ -42,23 +35,8 @@ module PhonebookApp::Views
     def title() @entry[:title].first end
 
     def employee_type()
-      type = @entry.employeetype.first
-      return 'Unknown' if type.nil? or type == 'OK'
-      parts = type.split('')
-      return 'Disabled' if parts.include?('D')
-      org = case parts[0]
-        when 'C' then 'Mozilla Corporation'
-        when 'F' then 'Mozilla Foundation'
-        when 'J' then 'Mozilla Japan'
-        when 'M' then 'Mozilla Messaging'
-        when 'O' then 'Mozilla Online'
-      end
-      stat = case parts[1]
-        when 'E' then 'Employee'
-        when 'I' then 'Intern'
-        when 'C' then 'Contractor'
-      end
-      "#{org}, #{stat}"
+      org, stat = PhonebookApp.employee_type(@entry)
+      stat.nil? ? org : "#{org}, #{stat}"
     end
 
     def org_chart_url() '/tree#search/' + mail end
@@ -66,9 +44,9 @@ module PhonebookApp::Views
     def manager
       manager = @entry[:manager].first
       return nil if manager.nil?
-      PhonebookApp::Search.new(Auth::DN.new(manager).mail).results.first
+      PhonebookApp::QuickLookup[Auth::DN.new(manager).mail]
     end
-    def manager_search_url() '#search/' + self.manager.mail.first end
+    def manager_search_url() '#search/' + self.manager[:mail].first end
 
     def tel
       lambda do |phone|

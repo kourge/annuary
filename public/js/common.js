@@ -246,8 +246,8 @@ String.prototype.dnToEmail = function dnToEmail() {
 };
 
 SearchManager.notFoundMessage =
-  '<div style="text-align: center; margin-top: 5em;">' +
-    '<img src="./img/ohnoes.jpg" />' +
-    '<h2>OH NOES! No ones were foundz.</h2>' +
-  '</div>';
+  '<p class="error">' + 
+    '<span class="prefix" title="Error">Error:</span>' + 
+    'OH NOES! <span class="message">No ones were foundz.</span>' +
+  '</p>';
 
