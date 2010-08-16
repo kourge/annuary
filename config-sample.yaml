@@ -1,0 +1,13 @@
+ldap:
+  # Indeed, LDAP option names must start with a colon.
+  :host: 'ldap.example.com'
+  :port: 636
+  :encryption: :simple_tls
+memcache:
+  enabled: true
+  servers:
+    - "localhost:11211"
+photo:
+  mime_type: 'image/jpeg'
+  thumbnail_dimensions: '140x175>'
+

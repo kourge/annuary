@@ -9,9 +9,7 @@ class PhonebookApp
   def self.memcache() @@memcache end
 
   if SETTINGS['memcache']['enabled'] and defined? MemCache
-    @@memcache = MemCache.new(
-      "#{SETTINGS['memcache']['host']}:#{SETTINGS['memcache']['port']}"
-    ) 
+    @@memcache = MemCache.new(SETTINGS['memcache']['servers']) 
     if not @@memcache.active? or not @@memcache.servers.any? { |s| s.alive? }
       @@memcache = nil
     end
