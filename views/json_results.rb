@@ -16,7 +16,8 @@ module PhonebookApp::Views
           :manager => e.manager ? {
             :dn => e.manager[:dn].first, :cn => e.manager[:cn].first
           } : nil,
-          :photoURL => e.photo_url, :thumbURL => e.thumb_url
+          :photoURL => e.photo_url, :thumbURL => e.thumb_url,
+          :hasPhoto => e.photo?
         }
       end.to_json
     end

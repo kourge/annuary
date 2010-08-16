@@ -1,0 +1,24 @@
+<div id="page">
+
+<div id="orgchart" class="tree">
+<ul>
+{{{ principal_tree }}}
+</ul>
+</div>
+
+<div id="orphans" class="tree">
+<ul>
+  <li>People who need to set their manager</li>
+  <ul>
+    {{# orphans }}
+      {{{ render }}}
+    {{/ orphans }}
+  </ul>
+</ul>
+</div>
+
+<div id="person"></div>
+
+</div>
+
+<script src="js/view-tree.js"></script>

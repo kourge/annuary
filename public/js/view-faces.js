@@ -17,6 +17,9 @@ Object.extend(SearchManager, {
         $("text").releaseFocus();
         $("results").update('');
         var results = r.responseText.evalJSON().each(function(person) {
+          if (!person.hasPhoto) {
+            return;
+          }
           var container = new Element("div").addClassName("photo-frame");
           var face = new Element("img", {
             src: person.thumbURL, "class": "wall-photo"

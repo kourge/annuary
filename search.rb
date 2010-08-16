@@ -30,15 +30,13 @@ class PhonebookApp
   Views::Card.template_path = File.join(File.dirname(__FILE__), 'templates')
   Views::Results.template_path = File.join(File.dirname(__FILE__), 'templates')
 
-  get '/directory.php' do
-    redirect '/search/*?format=fligtar'
-  end
-
   ['/search/:keyword', '/search', '/search.php'].each do |route|
     get route do
       keyword = params[:keyword] || params[:query]
       format = params[:format]
-      results = Search.new(keyword).results
+      search = Search.new(keyword)
+      search.attributes << 'jpegPhoto'
+      results = search.results
       if format == 'html'
         results.map { |entry| Views::Card.new(entry).render }.join
       elsif format.respond_to?(:downcase!)

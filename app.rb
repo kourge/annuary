@@ -33,6 +33,7 @@ load 'auth.rb'
 load 'search.rb'
 load 'photo.rb'
 load 'edit.rb'
+load 'tree.rb'
 load 'organization.rb'
 
 

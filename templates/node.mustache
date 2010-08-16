@@ -1,0 +1,13 @@
+<li id="{{ id }}" class="{{ classes }}">
+  <span class="hit-target">
+    <a href="{{ url }}" class="hr-link">{{ name }}</a> 
+    <span class="title">{{ title }}</span>
+  </span>
+</li>
+{{^ leaf? }}
+  <ul>
+  {{# children }}
+    {{{ render }}}
+  {{/ children }}
+  </ul>
+{{/ leaf? }}

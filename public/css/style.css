@@ -39,24 +39,28 @@ a:hover {
 
 
 #header {
-  position: relative;
-  width: 60em;
+  display: block;
   margin: 0.5em auto 2em auto;
   z-index: 1;
+  text-align: center;
   }
-  #header h1 {
+  #header form {
     display: inline-block;
-    width: 214px;
+    text-align: left;
+  }
+    #header h1 {
+      display: inline-block;
+      width: 214px;
+      }
+    #header h1 a {
+      display: inline-block;
+      height: 0;
+      padding-top: 47px;
+      width: 214px;
+      overflow: hidden;
+      background: url(../img/phonebook.png) no-repeat;
+      margin-bottom: -18px;
     }
-  #header h1 a {
-    display: inline-block;
-    height: 0;
-    padding-top: 47px;
-    width: 214px;
-    overflow: hidden;
-    background: url(../img/phonebook.png) no-repeat;
-    margin-bottom: -18px;
-  }
 
 #search-region {
   display: inline-block;
@@ -556,8 +560,7 @@ table.edit-table {
   position: relative;
   }
 
-#orgchart,
-#orphans {
+div.tree {
   color: #ccc;
   margin: 1em;
   padding: 0.5em;
@@ -571,8 +574,7 @@ table.edit-table {
   -webkit-box-shadow: 0 0 16px #000;
   }
 
-  #orgchart.filter-view,
-  #orphans.filter-view {
+  div.tree.filter-view {
     background-color: #333;
     }
 
@@ -612,13 +614,17 @@ div.tree ul {
   div.tree ul li {
     list-style-type: disc;
     cursor: default;
-    padding: 0.25em 0 0.25em 4px;
     margin-top: 1px;
+    padding: 0;
     font-size: 14px;
     }
 
+    div.tree ul li.hr-node span.hit-target {
+      padding: 0.25em 0 0.25em 4px;
+      display: block;
+      }
+
     div.tree ul li.hr-node {
-      -moz-user-select: -moz-none;
       }
       div.tree ul li.hr-node:hover {
         background-color: rgba(39, 103, 135, 0.5);

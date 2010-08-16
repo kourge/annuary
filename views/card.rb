@@ -16,6 +16,7 @@ module PhonebookApp::Views
     def cn() @entry.cn.first end
     def mail() @entry.mail.first end
 
+    def photo?() not @entry[:jpegphoto].empty? end
     def photo_url() '/photo/' + self.mail end
     def thumb_url() '/thumb/' + self.mail end
 

@@ -183,6 +183,11 @@ BehaviorManager.register("submitOnEnter", function(e) {
   window.location.hash = "#search/" + $F("text");
 }.toBehavior("phonebook-search", "submit"));
 
+BehaviorManager.register("cardSearchOnEnter", function(e) {
+  e.stop();
+  window.location = "./#search/" + $F("text");
+}.toBehavior("phonebook-search", "submit"));
+
 BehaviorManager.register("centerHeader", {
   attached: false,
 

@@ -1,17 +1,13 @@
 
-BehaviorManager.enable("slashSearch");
-
 $(document).observe("dom:loaded", function() {
+  BehaviorManager.enable("slashSearch");
+  BehaviorManager.enable("cardSearchOnEnter");
+
   $("edit-entry").addClassName("selected").removeAttribute("href");
   var params = window.location.search.toQueryParams();
   if (params.mail || params.edit_mail) {
     $("edit-entry").update("Edit Entry");
   }
-
-  $("phonebook-search").observe("submit", function(e) {
-    e.stop();
-    window.location = "./#search/" + $F("text");
-  });
 
   var countryMap = {
     'Mountain View': 'US',
