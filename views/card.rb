@@ -17,11 +17,12 @@ module PhonebookApp::Views
     def mail() @entry.mail.first end
 
     def photo?() not @entry[:jpegphoto].empty? end
-    def photo_url() '/photo/' + self.mail end
-    def thumb_url() '/thumb/' + self.mail end
+    def photo_url() './photo/' + self.mail end
+    def thumb_url() './thumb/' + self.mail end
+    def null_photo_url() './img/null.jpg' end
 
-    def edit_url() '/edit/' + self.mail end
-    def vcard_url() '/search?format=vcard&query=' + self.mail end
+    def edit_url() './edit/' + self.mail end
+    def vcard_url() './search?format=vcard&query=' + self.mail end
 
     def location
       location = @entry[:physicaldeliveryofficename].first
@@ -40,14 +41,14 @@ module PhonebookApp::Views
       stat.nil? ? org : "#{org}, #{stat}"
     end
 
-    def org_chart_url() '/tree#search/' + mail end
+    def org_chart_url() './tree#search/' + mail end
 
     def manager
       manager = @entry[:manager].first
       return nil if manager.nil?
       PhonebookApp::QuickLookup[Auth::DN.new(manager).mail]
     end
-    def manager_search_url() '#search/' + self.manager[:mail].first end
+    def manager_search_url() '.#search/' + self.manager[:mail].first end
 
     def tel
       lambda do |phone|

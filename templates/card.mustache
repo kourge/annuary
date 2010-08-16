@@ -8,9 +8,16 @@
 
   <div class="body">
     <div class="side">
-      <a class="photo" href="{{ photo_url }}" target="_blank">
-        <img class="photo" src="{{ thumb_url }}" alt="Photo of {{ cn }}" />
-      </a>
+      {{# photo? }}
+        <a class="photo" href="{{ photo_url }}" target="_blank">
+          <img class="photo" src="{{ thumb_url }}" alt="Photo of {{ cn }}" />
+        </a>
+      {{/ photo? }}
+      {{^ photo? }}
+        <a class="photo">
+          <img class="photo" src="{{ null_photo_url }}" alt="{{ cn }} has no photo" />
+        </a>
+      {{/ photo? }}
       <a class="vcard-export" href="{{ vcard_url }}">
         vCard
       </a>
