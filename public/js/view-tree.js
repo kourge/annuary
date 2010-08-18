@@ -6,14 +6,10 @@ Element.addMethods("li", {
   },
 
   collapse: function collapse(element) {
-    var child = $(element).childTree();
-    child && child.hide();
     return $(element).addClassName("collapsed").removeClassName("expanded");
   },
 
   expand: function expand(element) {
-    var child = $(element).childTree();
-    child && child.show();
     return $(element).addClassName("expanded").removeClassName("collapsed");
   },
 
@@ -43,6 +39,7 @@ BehaviorManager.register("scrollSnap", function() {
 }.toBehavior(document, "scroll"));
 
 BehaviorManager.register("treeNodeToggling", function(e) {
+  e.stop();
   !e.element().match("a") && $(this).toggleTree();
 }.toBehavior(new Selector("div li.hr-node"), "click"));
 

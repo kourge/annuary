@@ -32,11 +32,16 @@ class PhonebookApp
 
   ['/search/:keyword', '/search', '/search.php'].each do |route|
     get route do
-      keyword = params[:keyword] || params[:query]
+      keyword = (params[:keyword] || params[:query]).strip
       format = params[:format]
-      search = Search.new(keyword)
-      search.attributes << 'jpegPhoto'
-      results = search.results
+      if keyword.empty?
+        results = []
+      else
+        search = Search.new(keyword)
+        search.attributes << 'jpegPhoto'
+        results = search.results
+      end
+
       if format == 'html'
         results.map { |entry| Views::Card.new(entry).render }.join
       elsif format.respond_to?(:downcase!)

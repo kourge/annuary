@@ -38,18 +38,31 @@ Element.addMethods({
 // Force Gecko to redraw the blinking cursor
 Element.addMethods("input", {
   releaseFocus: function releaseFocus(element) {
-    $w("blur focus blur").each(function(method) { $(element)[method](); });
+    element = $(element);
+    $w("blur focus blur").each(function(method) { element[method](); });
     return element;
   }
 });
 
 Prototype.resizeTarget = document.onresize ? document : window;
 
-Array.prototype.find = function find(selector) {
-  return this.filter(function(x) {
-    return x.match ? x.match(selector) : false;
-  });
-};
+Object.extend(Array.prototype, {
+  find: function find(selector) {
+    return this.filter(function(x) {
+      return x.match ? x.match(selector) : false;
+    });
+  },
+
+  shuffle: function shuffle() {
+    for (var i = this.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * i);
+      var t = this[i];
+      this[i] = this[j];
+      this[j] = t;
+    }
+    return this;
+  }
+});
 
 // Show / hide throbbers accoring to Ajax requests
 (function() {
@@ -246,7 +259,7 @@ var SearchManager = {
 };
 
 String.prototype.dnToEmail = function dnToEmail() {
-  var m = this.match(/mail=(\w+@mozilla.*),o=/);
+  var m = this.match(/mail=([\w.]+@mozilla.*),o=/);
   return (m ? m[1] : null);
 };
 
