@@ -11,14 +11,23 @@
   }
 
 @font-face {
+  font-family: "ChunkFiveRegular";
+  src: url("../fonts/Chunkfive.eot");
+  src: local("ChunkFive Regular"), local("ChunkFive"), 
+       url("../fonts/Chunkfive.woff") format("woff"), 
+       url("../fonts/Chunkfive.otf") format("opentype"), 
+       url("../fonts/Chunkfive.svg#ChunkFive") format("svg");
+}
+
+@font-face {
   font-family: "Droid Sans";
-  src: url(fonts/DroidSans.ttf) format("truetype");
+  src: url(../fonts/DroidSans.ttf) format("truetype");
 }
 
 @font-face {
   font-family: "Droid Sans";
   font-weight: bold;
-  src: url(fonts/DroidSans-Bold.ttf) format("truetype");
+  src: url(../fonts/DroidSans-Bold.ttf) format("truetype");
 }
 
 html {
@@ -420,7 +429,7 @@ p.error {
       width: 1em;
       }
 
-/* Editing view */
+/* Edit view */
 
 form#edit {
   text-align: center;
@@ -598,15 +607,6 @@ span.title {
   color: #666;
   }
 
-div.tree > ul {
-  /*
-  border-image: url(../img/org_bg.png) 21 24 25 24 repeat repeat;
-  -moz-border-image: url(../img/org_bg.png) 21 24 25 24 repeat repeat;
-  -webkit-border-image: url(../img/org_bg.png) 21 24 25 24 repeat repeat;
-  border-width: 21px 24px 25px;
-  */
-  }
-
 div.tree ul {
   padding-left: 20px;
   }
@@ -679,7 +679,13 @@ div.tree ul {
       list-style-image: none;
       }
 
-/* Facewall View */
+    div.tree ul li.expanded + ul {
+      }
+    div.tree ul li.collapsed + ul {
+      display: none;
+      }
+
+/* Faces View */
 div.photo-frame {
   display: inline-block;
   margin: 2em;
