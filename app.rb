@@ -34,6 +34,7 @@ load 'search.rb'
 load 'photo.rb'
 load 'edit.rb'
 load 'tree.rb'
+load 'whosthat.rb'
 load 'organization.rb'
 
 
