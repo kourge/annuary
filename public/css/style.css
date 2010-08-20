@@ -817,5 +817,14 @@ body.lightbox #results {
     #stage #question-cluster #options button {
       font-family: "Droid Sans";
       font-weight: normal;
+      border: none;
+      margin: 0.25em;
+      padding: 0.25em 0.75em;
+      -moz-border-radius: 0.5em;
+      background-color: rgba(172, 209, 227, 0.5);
+      color: white;
+      }
+    #stage #question-cluster #options button:hover {
+      background-color: rgba(172, 209, 227, 0.75);
       }
 

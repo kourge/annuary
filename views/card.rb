@@ -55,6 +55,8 @@ module PhonebookApp::Views
         return phone if phone !~ /\d/
         return phone if phone =~ /\(.+?\).+\(.+?\)/
         number = phone.sub(/\(.+\)\s*$/, '').sub(/.+:\s*/, '').strip
+        number = Rack::Utils::escape_html(number)
+        phone = Rack::Utils::escape_html(phone)
         "<a href=\"tel:#{number}\">#{phone}</a>"
       end
     end
@@ -70,7 +72,9 @@ module PhonebookApp::Views
     def wiki_format
       lambda do |markup|
         markup.gsub(/\n|\r\n/, '<br />').gsub(/\[(.+?)(?:\s(.+?))?\]/) do
-          "<a href=\"#{$1}\">#{$2}</a>"
+          fst = Rack::Utils::escape_html($1)
+          snd = Rack::Utils::escape_html($2)
+          "<a href=\"#{fst}\">#{snd}</a>"
         end
       end
     end

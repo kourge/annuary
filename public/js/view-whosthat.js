@@ -47,7 +47,14 @@ var GuessingGame = {
     var image = new Element("img", {src: nextPerson.thumbURL});
     this.photo.insert(image);
 
-    var names = this.getRandom(3).pluck("cn").concat([nextPerson.cn]).shuffle();
+    var name = null, randomNames = [];
+    while (randomNames.length != 3 && (name = this.getRandom())) {
+      if (name.cn == nextPerson.cn) {
+        continue;
+      }
+      randomNames.push(name);
+    }
+    var names = randomNames.pluck("cn").concat([nextPerson.cn]).shuffle();
     this.options.update('');
     names.each(function(name) {
       var button = new Element("button", {"class": "option"}).update(name);
@@ -70,16 +77,12 @@ var GuessingGame = {
     BehaviorManager.fire("adjustColumnLayout");
   },
 
-  getRandom: function getRandom(count) {
-    var results = [];
-    while (results.length != count) {
-      if (this._rindex >= this.names.length) {
-        this._rindex = 0;
-        this.names.shuffle();
-      }
-      results.push(this.names[this._rindex++]);
+  getRandom: function getRandom() {
+    if (this._rindex >= this.names.length) {
+      this._rindex = 0;
+      this.names.shuffle();
     }
-    return results;
+    return this.names[this._rindex++];
   },
 
   preloadImage: function preloadImage(url) {
