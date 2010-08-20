@@ -16,7 +16,9 @@ Object.extend(SearchManager, {
       onSuccess: function onSuccess(r) {
         $("text").releaseFocus();
         $("results").update('');
-        var results = r.responseText.evalJSON().each(function(person) {
+        var results = r.responseText.evalJSON().sortBy(function(entry) {
+          return entry.cn;
+        }).each(function(person) {
           if (!person.hasPhoto) {
             return;
           }

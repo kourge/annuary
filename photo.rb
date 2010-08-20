@@ -37,19 +37,19 @@ class PhonebookApp
 
   get '/photo/:mail' do |mail|
     content_type SETTINGS['photo']['mime_type']
-    Photo[mail]
+    Photo[Auth::DN.new(mail).dn]
   end
 
   get '/thumb/:mail' do |mail|
     content_type SETTINGS['photo']['mime_type']
-    Thumb[mail]
+    Thumb[Auth::DN.new(mail).dn]
   end
 
   get '/pic.php' do
-    mail = request[:mail]
-    halt 404 if not mail
+    halt 404 if not request[:mail]
+    dn = Auth::DN.new(request[:mail]).dn
     content_type SETTINGS['photo']['mime_type']
-    request[:type] == 'thumb' ? Thumb[mail] : Photo[mail]
+    request[:type] == 'thumb' ? Thumb[dn] : Photo[dn]
   end
 end
 
