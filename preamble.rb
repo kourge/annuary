@@ -17,6 +17,7 @@ class PhonebookApp < Sinatra::Base
     end
 
     def error(status_code, object)
+      header 'Vary' => 'Accept'
       if accept_json?
         content_type :json
         halt status_code, {:error => object}.to_json
