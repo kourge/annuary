@@ -38,7 +38,7 @@ class PhonebookApp
         results = []
       else
         search = Search.new(keyword)
-        search.attributes << 'jpegPhoto'
+        search.attributes += ['jpegPhoto', 'sn', 'givenName']
         results = search.results
       end
 

@@ -12,6 +12,7 @@ Annuary uses several Ruby gems:
 * [json](http://flori.github.com/json/)
 * [mustache](http://github.com/defunkt/mustache)
 * [QuickMagick](http://quickmagick.rubyforge.org/quick_magick/)
+* [vPim](http://vpim.rubyforge.org/)
 
 Most gems can be installed by simply running:
 

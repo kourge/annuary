@@ -14,6 +14,8 @@ module PhonebookApp::Views
 
     def dn() @entry.dn end
     def cn() @entry.cn.first end
+    def sn() @entry.sn.first end
+    def given_name() @entry.givenname.first end
     def mail() @entry.mail.first end
 
     def photo?() not @entry[:jpegphoto].empty? end
@@ -39,6 +41,12 @@ module PhonebookApp::Views
     def employee_type()
       org, stat = PhonebookApp.employee_type(@entry)
       stat.nil? ? org : "#{org}, #{stat}"
+    end
+
+    def org()
+      type = PhonebookApp.employee_type(@entry)
+      return type.first if type.respond_to?(:first)
+      type
     end
 
     def org_chart_url() './tree#search/' + mail end
