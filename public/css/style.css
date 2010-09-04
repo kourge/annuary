@@ -589,18 +589,18 @@ div.tree {
 
 #person {
   position: absolute;
-  top: -75px;
+  top: 0;
   bottom: 0;
   left: 34em;
   right: 0;
   }
   #person div.vcard {
     position: absolute;
-    margin: 68px 0 0 0;
+    margin: -5px auto auto 5px;
     }
     #person div.vcard.snap-to-top {
       position: fixed;
-      margin-top: 0;
+      margin-top: -75px;
       }
 
 span.title {
