@@ -27,10 +27,10 @@ class PhonebookApp
       def []=(key, value) self.set(key) end
       def invalidate(key) self[key] = nil end
 
-      if SETTINGS['memcache']['enabled'] and PhonebookApp.memcache
-        extend PhonebookApp::Memcachable
-        memcachify :[], 'phonebook:thumb'
-        memcachify :[]=, 'phonebook:thumb'
+      if PhonebookApp.memcache
+        include Memcachable
+        memcachify :[], 'phonebook:thumb', PhonebookApp.memcache
+        memcachify :[]=, 'phonebook:thumb', PhonebookApp.memcache
       end
     end
   end

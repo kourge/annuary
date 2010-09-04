@@ -5,19 +5,13 @@ rescue LoadError
   nil
 end if SETTINGS['memcache']['enabled']
 
-class PhonebookApp
-  def self.memcache() @@memcache end
+module Memcachable
 
-  if SETTINGS['memcache']['enabled'] and defined? MemCache
-    @@memcache = MemCache.new(SETTINGS['memcache']['servers']) 
-    if not @@memcache.active? or not @@memcache.servers.any? { |s| s.alive? }
-      @@memcache = nil
-    end
-  else
-    @@memcache = nil
+  def self.included(base)
+    base.extend(ClassMethods)
   end
 
-  module Memcachable
+  module ClassMethods
 
     # memcachify can take any arbritrary method and memoize it through a
     # memcache connection. It does this by calling Array#hash on the arguments
@@ -35,14 +29,15 @@ class PhonebookApp
     #
     #   $memcache_connection = MemCache.new('localhost:11211')
     #   class Calendar
+    #     extend Memcacheable
+    #
     #     def [](from, to)
     #       # something computationally expensive
     #     end
     #
-    #     extend Memcacheable
     #     memcachify :[], 'daterange', $memcache_connection
     #   end
-    def memcachify(method, id, connection=PhonebookApp.memcache)
+    def memcachify(method, id, connection)
       original = self.instance_method(method)
       if method.to_s =~ /=$/
         # We're dealing with a setter
@@ -61,6 +56,20 @@ class PhonebookApp
         end
       end
     end
+  end
+
+end
+
+class PhonebookApp
+  def self.memcache() @@memcache end
+
+  if SETTINGS['memcache']['enabled'] and defined? MemCache
+    @@memcache = MemCache.new(SETTINGS['memcache']['servers']) 
+    if not @@memcache.active? or not @@memcache.servers.any? { |s| s.alive? }
+      @@memcache = nil
+    end
+  else
+    @@memcache = nil
   end
 end 
 
