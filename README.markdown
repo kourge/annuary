@@ -11,7 +11,9 @@ Annuary uses several Ruby gems:
 * [net/ldap](http://github.com/RoryO/ruby-net-ldap)
 * [json](http://flori.github.com/json/)
 * [mustache](http://github.com/defunkt/mustache)
-* [QuickMagick](http://quickmagick.rubyforge.org/quick_magick/)
+* [QuickMagick](http://quickmagick.rubyforge.org/quick_magick/), which requires
+  you to have [ImageMagick](http://www.imagemagick.org/) installed on your 
+  system.
 * [vPim](http://vpim.rubyforge.org/)
 
 Most gems can be installed by simply running:
