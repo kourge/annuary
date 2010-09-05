@@ -151,32 +151,33 @@ a:hover {
     visibility: visible;
     }
 
-#menu {
+ul#main-nav {
   display: inline-block;
   margin-left: 0.25em;
   }
-  #menu li {
-    display: inline-block;
-    font-size: 0.857em;
-    }
-  #menu a {
-    color: #acd1e3;
-    padding: 0.25em 0.75em;
-    border-radius: 0.5em;
-    -moz-border-radius: 0.5em;
-    -webkit-border-radius: 0.5em;
-    }
-  #menu a:hover {
-    background-color: rgba(172, 209, 227, 0.25);
-    text-decoration: none;
-    }
-  #menu a.selected {
-    color: #FFF;
-    background-color: rgba(172, 209, 227, 0.5);
-    }
-  #menu li.edit {
-    margin-left: 2em;
-    }
+
+ul.menu li {
+  display: inline-block;
+  font-size: 0.857em;
+  }
+ul.menu a {
+  color: #acd1e3;
+  padding: 0.25em 0.75em;
+  border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  }
+ul.menu a:hover {
+  background-color: rgba(172, 209, 227, 0.25);
+  text-decoration: none;
+  }
+ul.menu a.selected {
+  color: #FFF;
+  background-color: rgba(172, 209, 227, 0.5);
+  }
+ul.menu li.edit {
+  margin-left: 2em;
+  }
 
 #phonebook-search.large {
   width: 30em;
@@ -563,6 +564,107 @@ table.edit-table {
     color: #0489B7;
     }
 
+/* Faces View */
+
+div.photo-frame {
+  display: inline-block;
+  margin: 2em;
+  cursor: pointer;
+  -moz-user-select: none;
+  position: relative;
+  padding: 0;
+  }
+
+  div.photo-frame span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.66);
+    color: #FFF;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 0.687em;
+    padding: 0.5em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+    display: none;
+    }
+  div.photo-frame:hover span {
+    display: block;
+    }
+
+  div.photo-frame img {
+    box-shadow: 0 0 16px #333;
+    -moz-box-shadow: 0 0 16px #333;
+    -webkit-box-shadow: 0 0 16px #333;
+    }
+
+  div.photo-frame.disabled {
+    filter: url(effects.svg#fog);
+    }
+
+#overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(32, 32, 32, 0.5);
+  text-align: center;
+  vertical-align: center;
+  display: none;
+  overflow: hidden;
+  z-index: 2;
+  }
+
+  #overlay div.vcard {
+    display: inline-block;
+    text-align: left;
+    }
+
+  #overlay div.vcard div.close-button {
+    position: absolute;
+    left: -30px;
+    top: -15px;
+    width: 42px;
+    height: 42px;
+    background: transparent url(../img/close-button.png);
+    cursor: pointer;
+  }
+
+body.lightbox #overlay {
+  display: block;
+  }
+
+body.lightbox #header,
+body.lightbox #results {
+  filter: url(effects.svg#blur);
+  }
+
+/* Orgchart skeleton */
+
+nav.sidebar-left {
+  display: block;
+  float: left;
+  width: 6em;
+  padding: 0.5em;
+  padding-top: 0;
+  margin-top: 2px;
+  position: fixed;
+  }
+
+nav.sidebar ul li {
+  margin-bottom: 0.5em;
+  }
+
+div#page.orgchart {
+  margin-left: 6em;
+  }
+
 /* Tree view */
 
 #page {
@@ -572,15 +674,18 @@ table.edit-table {
 div.tree {
   color: #ccc;
   margin: 1em;
+  margin-left: 0;
   padding: 0.5em;
-  width: 32em;
+  width: 30em;
   background-color: #FFF;
   border-radius: 0.5em;
   -moz-border-radius: 0.5em;
   -webkit-border-radius: 0.5em;
+  /*
   box-shadow: 0 0 16px #000;
   -moz-box-shadow: 0 0 16px #000;
   -webkit-box-shadow: 0 0 16px #000;
+  */
   }
 
   div.tree.filter-view {
@@ -591,7 +696,7 @@ div.tree {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 34em;
+  left: 31em;
   right: 0;
   }
   #person div.vcard {
@@ -684,86 +789,6 @@ div.tree ul {
     div.tree ul li.collapsed + ul {
       display: none;
       }
-
-/* Faces View */
-div.photo-frame {
-  display: inline-block;
-  margin: 2em;
-  cursor: pointer;
-  -moz-user-select: none;
-  position: relative;
-  padding: 0;
-  }
-
-  div.photo-frame span {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.66);
-    color: #FFF;
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-size: 0.687em;
-    padding: 0.5em;
-    overflow: hidden;
-    white-space: nowrap;
-    text-align: center;
-    display: none;
-    }
-  div.photo-frame:hover span {
-    display: block;
-    }
-
-  div.photo-frame img {
-    box-shadow: 0 0 16px #333;
-    -moz-box-shadow: 0 0 16px #333;
-    -webkit-box-shadow: 0 0 16px #333;
-    }
-
-  div.photo-frame.disabled {
-    filter: url(effects.svg#fog);
-    }
-
-#overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: 0;
-  padding: 0;
-  background-color: rgba(32, 32, 32, 0.5);
-  text-align: center;
-  vertical-align: center;
-  display: none;
-  overflow: hidden;
-  z-index: 2;
-  }
-
-  #overlay div.vcard {
-    display: inline-block;
-    text-align: left;
-    }
-
-  #overlay div.vcard div.close-button {
-    position: absolute;
-    left: -30px;
-    top: -15px;
-    width: 42px;
-    height: 42px;
-    background: transparent url(../img/close-button.png);
-    cursor: pointer;
-  }
-
-body.lightbox #overlay {
-  display: block;
-  }
-
-body.lightbox #header,
-body.lightbox #results {
-  filter: url(effects.svg#blur);
-  }
 
 /* Who's That View */
 

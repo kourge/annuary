@@ -97,7 +97,7 @@ var GuessingGame = {
 };
 
 $(document).observe("dom:loaded", function() {
-  $("menu").down("a.whosthat").addClassName("selected");
+  $("main-nav").down("a.whosthat").addClassName("selected");
 
   BehaviorManager.enable("adjustColumnLayout");
   BehaviorManager.fire("adjustColumnLayout");

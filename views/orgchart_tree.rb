@@ -1,11 +1,21 @@
 
 module PhonebookApp::Views
-  class Tree < Layout
+  require 'views/node' if not defined?(Node)
+  Node.template_path = PhonebookApp.mustache[:templates]
+
+  class OrgchartTree < Orgchart
+    ROOTS = [
+      'mail=lilly@mozilla.com,o=com,dc=mozilla',
+      'mail=mitchell@mozilla.com,o=com,dc=mozilla',
+      'mail=dascher@mozilla.com,o=com,dc=mozilla'
+    ]
+
+    def content_type() 'text/html' end
+
     def initialize()
       @roots = []
       @people = {}
       @orphans = []
-      @tree = PhonebookApp::TreeBroker.new
 
       search = PhonebookApp::Search.new('*')
       search.base = 'o=com,dc=mozilla'
@@ -13,10 +23,10 @@ module PhonebookApp::Views
       search.results.each do |person|
         if not person[:manager].empty?
           (@people[person.manager.first] ||= []) << person
-        elsif @tree.roots.include?(person.dn)
+        elsif ROOTS.include?(person.dn)
           @roots << person
         elsif not person[:mail].empty?
-          @orphans << person if not @tree.roots.include?(person.dn)
+          @orphans << person if not ROOTS.include?(person.dn)
         end
       end
     end

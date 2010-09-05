@@ -159,7 +159,7 @@ var Tree = {
         people.sort(function(a, b) {
           return a.cumulativeOffset().top - b.cumulativeOffset().top;
         });
-        
+
         /*
         var allowedToShow = people.map(function(x) {
           var rootwards = x.ancestors().find("ul").compact().invoke("previous", "li");
@@ -167,7 +167,7 @@ var Tree = {
           return [x].concat(rootwards).concat(leafwards).compact();
         });
         */
-        
+
         if (people.length > 0) {
           //$$("#orgchart li:not(.leaf)").invoke("collapse");
           //allowedToShow.flatten().uniq().find(":not(.leaf)").invoke("expand");
@@ -218,7 +218,8 @@ Object.extend(SearchManager, {
 
 $(document).observe("dom:loaded", function() {
   $("search").update("Filter");
-  $("menu").down("a.tree").addClassName("selected");
+  $("main-nav").down("a.tree").addClassName("selected");
+  $("orgchart-nav").down("a.tree").addClassName("selected");
 
   BehaviorManager.enable("scrollSnap");
   BehaviorManager.enable("treeNodeToggling");

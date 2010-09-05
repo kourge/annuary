@@ -13,7 +13,7 @@ SearchManager.startSearch = function() {
 };
 
 $(document).observe("dom:loaded", function() {
-  $("menu").down("a.card").addClassName("selected");
+  $("main-nav").down("a.card").addClassName("selected");
 
   BehaviorManager.enable("slashSearch");
   SearchManager.initialize();

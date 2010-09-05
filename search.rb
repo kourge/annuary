@@ -15,22 +15,25 @@ class PhonebookApp
     def filter() raise NotImplementedError end
     def attributes() raise NotImplementedError end
 
-    def results
-      results = Auth.ldap_connection_as_user.search(
+    def search!
+      @results = Auth.ldap_connection_as_user.search(
         :base => self.base, :attributes => self.attributes,
         :filter => self.filter
       )
-      results = self.before_results(results) if self.respond_to? :before_results
-      results
+    end
+    
+    def results
+      @results = self.search! if @results.nil?
+      @results
     end
   end
 
   require 'views/card'
   require 'views/results'
-  Views::Card.template_path = File.join(File.dirname(__FILE__), 'templates')
-  Views::Results.template_path = File.join(File.dirname(__FILE__), 'templates')
+  Views::Card.template_path = mustache[:templates]
+  Views::Results.template_path = mustache[:templates]
 
-  ['/search/:keyword', '/search', '/search.php'].each do |route|
+  ['/search/:keyword', '/search'].each do |route|
     get route do
       keyword = (params[:keyword] || params[:query]).strip
       format = params[:format]
@@ -50,10 +53,12 @@ class PhonebookApp
           require "views/#{format}_results"
           const = format.capitalize + 'Results'
           raise LoadError if not Views.const_defined?(const)
+
           view = Views.const_get(const)
-          view.template_path = File.join(File.dirname(__FILE__), 'templates')
+          view.template_path = PhonebookApp.mustache[:templates]
           template = view.new(results, keyword)
-          content_type template.content_type
+
+          content_type(template.content_type)
           template.render
         rescue LoadError => e
           halt 400, "Invalid format specified"

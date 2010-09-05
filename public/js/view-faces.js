@@ -64,7 +64,7 @@ Object.extend(SearchManager, {
 BehaviorManager.enable("slashSearch");
 
 $(document).observe("dom:loaded", function() {
-  $("menu").down("a.wall").addClassName("selected");
+  $("main-nav").down("a.wall").addClassName("selected");
   BehaviorManager.enable("centerVCard");
   
   $("overlay").observe("click", function(e) {

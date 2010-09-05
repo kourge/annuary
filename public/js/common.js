@@ -78,12 +78,12 @@ Object.extend(Array.prototype, {
 
 // Search keyword persistence between different views
 $(document).observe("dom:loaded", function() {
-  $$("#menu a.persist").each(function(a) {
+  $$("#main-nav a.persist").each(function(a) {
     a.store("originalLink", a.readAttribute("href"));
   });
 });
 $(document).observe("hash:changed", function(e) {
-  $$("#menu a.persist").each(function(a) {
+  $$("#main-nav a.persist").each(function(a) {
     a.writeAttribute("href", a.retrieve("originalLink") + "#" + e.memo.hash);
   });
 });

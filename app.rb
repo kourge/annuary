@@ -11,7 +11,10 @@ load 'preamble.rb'
 
 class PhonebookApp < Sinatra::Base
   set :root, File.dirname(__FILE__)
-  set :mustache, {:views => 'views/', :templates => 'templates/'}
+  set :mustache, {
+    :views => File.expand_path('views/'),
+    :templates => File.expand_path('templates/')
+  }
   Mustache.raise_on_context_miss = true
 
   register Mustache::Sinatra
@@ -33,7 +36,7 @@ load 'auth.rb'
 load 'search.rb'
 load 'photo.rb'
 load 'edit.rb'
-load 'tree.rb'
+load 'orgchart.rb'
 load 'whosthat.rb'
 load 'organization.rb'
 
