@@ -3,10 +3,12 @@ class PhonebookApp
 
   # The Search class is responsible for giving LDAP entry results when
   # initialized with @keyword set. Typically, you only need to override the
-  # methods base, filter, and attributes. Implementing before_results will
-  # cause the default results implementation to run the LDAP search results
-  # through before_results as a filter.
+  # methods base, filter, and attributes. 
+  # The results method performs the search by calling search!; afterwards the
+  # result is cached. Override search! to change the implementation.
   class Search
+    attr_reader :keyword
+
     def initialize(keyword)
       @keyword = keyword
     end
