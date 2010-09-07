@@ -38,6 +38,8 @@ load 'photo.rb'
 load 'edit.rb'
 load 'orgchart.rb'
 load 'whosthat.rb'
+load 'local-pre.rb' if PhonebookApp.development? and File.exist?('local-pre.rb')
 load 'organization.rb'
+load 'local.rb' if PhonebookApp.development? and File.exist?('local.rb')
 
 
