@@ -5,4 +5,4 @@ unused
 *.swo
 *-console.rb
 .htaccess
-organization.rb
+.DS_Store
