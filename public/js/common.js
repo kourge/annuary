@@ -97,7 +97,7 @@ Function.prototype.lazify = function lazify() {
 
 Number.emToPx = function emToPx(x) {
   var div = new Element("div").setStyle({
-    position: "absolute", margin: "0", padding: "0", visibility: "none",
+    position: "absolute", margin: "0", padding: "0", visibility: "hidden",
     width: x + "em", height: "9px", top: "-100000em", left: "-100000em"
   });
   $(document.body).insert(div);
@@ -259,7 +259,7 @@ var SearchManager = {
 };
 
 String.prototype.dnToEmail = function dnToEmail() {
-  var m = this.match(/mail=([\w.]+@mozilla.*),o=/);
+  var m = this.match(/mail=([\w.]+@.+),o=/);
   return (m ? m[1] : null);
 };
 
