@@ -218,7 +218,7 @@ Object.extend(SearchManager, {
 
 $(document).observe("dom:loaded", function() {
   $("search").update("Filter");
-  $("main-nav").down("a.tree").addClassName("selected");
+  $("main-nav").down("a.orgchart").addClassName("selected");
   $("orgchart-nav").down("a.tree").addClassName("selected");
 
   BehaviorManager.enable("scrollSnap");
