@@ -641,7 +641,9 @@ body.lightbox #overlay {
   }
 
 body.lightbox #header,
-body.lightbox #results {
+body.lightbox #results,
+body.lightbox #page,
+body.lightbox nav.sidebar {
   filter: url(effects.svg#blur);
   }
 
