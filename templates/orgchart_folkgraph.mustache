@@ -1,1 +1,28 @@
-Folkgraph
+
+<div id="container">
+  
+</div>
+
+<style>
+body { overflow: hidden; }
+
+#container {
+  width: 500px;
+  height: 500px;
+  border-left: 1px solid #acd1e3;
+  border-top: 1px solid #acd1e3;
+}
+
+#container .node {
+  cursor: pointer;
+  margin-left: 3px;
+  color: white;
+  overflow: hidden;
+}
+</style>
+
+<script src="js/jit.js"></script>
+<script src="js/view-orgchart-folkgraph.js"></script>
+<script>
+var data = {{{ yield }}};
+</script>
