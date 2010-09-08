@@ -15,6 +15,7 @@ Annuary uses several Ruby gems:
   you to have [ImageMagick](http://www.imagemagick.org/) installed on your 
   system.
 * [vPim](http://vpim.rubyforge.org/)
+* [rack-flash](http://github.com/nakajima/rack-flash)
 
 Most gems can be installed by simply running:
 
