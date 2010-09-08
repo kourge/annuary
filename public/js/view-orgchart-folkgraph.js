@@ -4,7 +4,6 @@ BehaviorManager.register("adjustCanvas", function() {
   var offset = $("container").cumulativeOffset();
   var width = dims.width - offset.left, height = dims.height - offset.top;
   var style = {width: width + "px", height: height + "px"};
-  console.log($H(style).inspect());
   var container = $("container");
   var viz = container.retrieve("viz");
   viz && viz.canvas.resize(width, height);
