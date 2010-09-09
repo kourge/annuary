@@ -241,7 +241,7 @@ var SearchManager = {
   },
 
   onHashChange: function onHashChange(e) {
-    $("text").value = e.memo.hash.replace("search/", '');
+    $("text").value = e.memo.hash.replace("search/", '').replace('%20', ' ');
     this.startSearch.bind(this)();
   },
 
