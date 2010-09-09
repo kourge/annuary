@@ -112,7 +112,7 @@ class PhonebookApp
         f.eq('mail', keyword)
       else
         f.eq('objectClass', 'mozComPerson') & (
-          f.eq('cn', "*#{keyword}*") |
+          f.eq('cn', "*#{keyword.split(/\s+/).join('*')}*") |
           f.eq('mail', "*#{keyword}*") |
           f.approx('im', keyword)
         )
