@@ -61,8 +61,11 @@ var GuessingGame = {
       var caption = this.caption;
       button.observe("click", function(e) {
         this._timer = setTimeout(GuessingGame.next.bind(GuessingGame), 2000);
-        this.caption.update("It's " + nextPerson.cn + "!")
-        image.wrap(new Element("a", {href: nextPerson.photoURL}));
+        var link = 'It\'s <a href="./#search/#{mail}">#{cn}</a>!';
+        this.caption.update(link.interpolate(nextPerson));
+        image.wrap(new Element("a", {
+          href: nextPerson.photoURL, target: '_blank'
+        }));
         if (e.element().innerHTML.strip() == nextPerson.cn) {
           this.score += 5;
           this.streak++;

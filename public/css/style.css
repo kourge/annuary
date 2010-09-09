@@ -819,6 +819,10 @@ div.tree ul {
     font-family: ChunkFiveRegular, Georgia;
     font-weight: bold;
     }
+  #stage #question a {
+    color: white;
+    text-decoration: underline;
+    }
   #stage #question #scores {
     position: absolute;
     top: 0;
