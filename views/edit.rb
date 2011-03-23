@@ -61,9 +61,9 @@ module PhonebookApp::Views
         :options => options, :selected => country
       )
     end
-    
+
     def job_title
-      self.singular_text(:name => 'title', :value => @entry[:title].first) 
+      self.singular_text(:name => 'title', :value => @entry[:title].first)
     end
 
     def employee_type
@@ -77,7 +77,7 @@ module PhonebookApp::Views
       organizations = PhonebookApp::ORGANIZATIONS
       current = @entry[:employeetype].first
       self.select(
-        :name => 'org_type', 
+        :name => 'org_type',
         :selected => current ? current.split('')[0] : '',
         :options => [self.empty_option] + organizations.keys.sort.map do |key|
           {:label => organizations[key], :value => key}
@@ -89,7 +89,7 @@ module PhonebookApp::Views
       hire_types = PhonebookApp::HIRE_TYPES
       current = @entry[:employeetype].first
       self.select(
-        :name => 'hire_type', 
+        :name => 'hire_type',
         :selected => current ? current.split('')[1] : '',
         :options => [self.empty_option] + hire_types.keys.sort.map do |key|
           {:label => hire_types[key], :value => key}
