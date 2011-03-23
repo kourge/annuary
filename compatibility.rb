@@ -19,6 +19,7 @@ class IO
   include Fix::IOFix if RUBY_VERSION < '1.8.7'
 end
 
+require 'stringio' unless defined? StringIO
 class StringIO
   include Fix::IOFix if RUBY_VERSION < '1.8.7'
 end
