@@ -3,7 +3,7 @@ class PhonebookApp
   require 'views/orgchart'
   Views::Orgchart.template_path = mustache[:templates]
 
-  get %r{/orgchart\|(.+)} do |repr|
+  get %r{/orgchart-(.+)} do |repr|
     begin
       repr.downcase!
       require "views/orgchart_#{repr}"
