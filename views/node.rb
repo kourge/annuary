@@ -2,6 +2,8 @@
 module PhonebookApp::Views
   class Node < Mustache
     def initialize(entry, lookup)
+      self.template_name = self.template_name.split("/")[-1]
+
       @entry = entry
       @lookup = lookup
 

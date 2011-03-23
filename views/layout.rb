@@ -1,6 +1,10 @@
 
 module PhonebookApp::Views
   class Layout < Mustache
+    def initialize
+      self.template_name = self.template_name.split("/")[-1]
+    end
+
     def flash
       flash = PhonebookApp.flash
       @flash = []

@@ -7,6 +7,8 @@ module PhonebookApp::Views
     end
 
     def initialize()
+      super
+
       @g = %Q(graph orgchart {
   graph [charset="UTF-8"];
   node [shape="Mrecord"];

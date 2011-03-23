@@ -4,6 +4,8 @@ module PhonebookApp::Views
     attr_reader :entry
 
     def initialize(entry) # Net::LDAP::Entry
+      self.template_name = self.template_name.split("/")[-1]
+
       @entry = entry
       @admin = nil
     end

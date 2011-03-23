@@ -10,6 +10,8 @@ module PhonebookApp::Views
     def content_type() 'text/html' end
 
     def initialize()
+      super
+
       @root = nil
       @people = {}
 
